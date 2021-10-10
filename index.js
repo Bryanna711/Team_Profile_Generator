@@ -78,45 +78,45 @@ const generateHTML = (answers) =>
                             </html>`
     ;
 
-// const engineerData = () => {
-//     return inquirer.prompt([
-//         {
-//             type: "input",
-//             message: "Enter Engineer's Name",
-//             name: "engName",
-//         },
-//         {
-//             type: "input",
-//             message: "Engineer's Employee ID",
-//             name: "engID"
-//         },
-//         {
-//             type: "input",
-//             message: "Engineer's Email",
-//             name: "engEmail",
-//         },
-//         {
-//             type: "input",
-//             message: "Enginner's GitHub User-Name",
-//             name: "gitHub",
-//         },
-//         {
-//             type: 'confirm',
-//             name: 'confirmed',
-//             message: 'Do you want to enter another engineer?',
-//             default: false
-//         },
-//     ])
-//     .then((data) => {
-//         if (data.confirmed) {
-//             engineerData();
-//         }
-//         else {
-//             internData();
-//         }
-//         console.log(data)
-//     })
-// };
+const engineerData = () => {
+    return inquirer.prompt([
+        {
+            type: "input",
+            message: "Enter Engineer's Name",
+            name: "engName",
+        },
+        {
+            type: "input",
+            message: "Engineer's Employee ID",
+            name: "engID"
+        },
+        {
+            type: "input",
+            message: "Engineer's Email",
+            name: "engEmail",
+        },
+        {
+            type: "input",
+            message: "Enginner's GitHub User-Name",
+            name: "gitHub",
+        },
+        {
+            type: 'confirm',
+            name: 'confirmed',
+            message: 'Do you want to enter another engineer?',
+            default: false
+        },
+    ])
+    .then((data) => {
+        if (data.confirmed) {
+            engineerData();
+        }
+        else {
+            internData();
+        }
+        console.log(data)
+    })
+};
 
 // const internData = () => {
 //     return inquirer.prompt([
@@ -160,32 +160,32 @@ const generateHTML = (answers) =>
 
 
 
-const generateManager = (data, i) => {
-        let resultCard = document.createElement("div");
-    resultCard.classList.add("card", "w-90");
-    resultCard.setAttribute("style", "border-color: rgb(28, 165, 184); border-style: solid; border-width: 3px; padding: 5px; margin-top: 10px; margin-bottom: 10px;");
+// const generateManager = (data, i) => {
+//         let resultCard = document.createElement("div");
+//     resultCard.classList.add("card", "w-90");
+//     resultCard.setAttribute("style", "border-color: rgb(28, 165, 184); border-style: solid; border-width: 3px; padding: 5px; margin-top: 10px; margin-bottom: 10px;");
 
-    let resultBody = document.createElement("div");
-    resultBody.classList.add("card-body");
-    resultBody.setAttribute("id", i);
-    resultCard.append(resultBody);
+//     let resultBody = document.createElement("div");
+//     resultBody.classList.add("card-body");
+//     resultBody.setAttribute("id", i);
+//     resultCard.append(resultBody);
 
-    let managerName = document.createElement("h3");
-    managerName.textContent = `${data.managerName} : Manager`
+//     let managerName = document.createElement("h3");
+//     managerName.textContent = `${data.managerName} : Manager`
 
-    let managerID = document.createElement("p");
-    managerID.textContent = `ID : ${data.managerID}`
+//     let managerID = document.createElement("p");
+//     managerID.textContent = `ID : ${data.managerID}`
 
-    let managerEmail = document.createElement("p");
-    managerEmail.textContent = `Email: ${data.managerEmail}`
+//     let managerEmail = document.createElement("p");
+//     managerEmail.textContent = `Email: ${data.managerEmail}`
 
-    let managerOffice = document.createElement("p");
-    managerOffice.textContent = `Office: ${data.managerOffice}`
+//     let managerOffice = document.createElement("p");
+//     managerOffice.textContent = `Office: ${data.managerOffice}`
 
-    resultBody.append(managerName, managerID, managerEmail, managerOffice);
+//     resultBody.append(managerName, managerID, managerEmail, managerOffice);
 
-    resultsContainer.append(resultCard);
-};
+//     resultsContainer.append(resultCard);
+// };
 
 
 // const generateEngineer = (data, i) => {
@@ -255,18 +255,8 @@ const generateManager = (data, i) => {
 const init = () => {
     managerData()
         .then((answers) => fs.writeFile("index.html", (generateHTML(answers)).toString(), (err) =>
-            err ? console.log(err) : console.log("Success!")))
-            generateManager();
-}
-
-init();
-
-
-
-
-
-
-// const init2 = ()=> {
-//     engineerData()
-// }
-// init2()
+            err ? console.log(err) : console.log("Success!")));
+        }
+        
+        init();
+        engineerData();
