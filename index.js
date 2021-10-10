@@ -1,5 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const generateHTML = require("./generateHTML");
+const Manager = require("./manager");
+const Engineer = require("./engineer");
+const Intern = require("./intern")
 
 const empArray = [];
 
@@ -24,7 +28,7 @@ const managerData = () => {
             message: "Enter Manager ID",
             name: "managerID",
             validate: idInput => {
-                if (isNan(idInput)) {
+                if ((idInput)) {
                     return true;
                 }
                 else {
@@ -52,7 +56,7 @@ const managerData = () => {
             message: "Enter Manager Office Number",
             name: "managerOffice",
             validate: officeInput => {
-                if (isNaN(officeInput)) {
+                if ((officeInput)) {
                     return true;
                 }
                 else {
@@ -74,12 +78,11 @@ const managerData = () => {
 
             empArray.push(manager);
 
-            if (confirmed) {
-                return
-                managerData(empArray);
+            if (managerAnswers.confirmed) {
+                return managerData(empArray);
             }
             else {
-                engineerData();
+               return empArray;
             }
         })
 };
@@ -106,7 +109,7 @@ const engineerData = () => {
             message: "Engineer's Employee ID",
             name: "engID",
             validate: idInput => {
-                if (isNan(idInput)) {
+                if ((idInput)) {
                     return true;
                 }
                 else {
@@ -156,11 +159,11 @@ const engineerData = () => {
 
             empArray.push(engineer);
 
-            if (confirmed) {
+            if (engineerAnswers.confirmed) {
                 return engineerData(empArray)
             }
             else {
-                internData();
+                return empArray;
             }
         })
 };
@@ -186,7 +189,7 @@ const internData = () => {
             message: "Enter Intern's Employee ID",
             name: "internID",
             validate: idInput => {
-                if (isNaN(idInput)) {
+                if ((idInput)) {
                     return true;
                 }
                 else {
@@ -233,11 +236,11 @@ const internData = () => {
         .then((internAnswers) => {
 
             const { internName, internID, internEmail, school } = internAnswers;
-            const intern = new intern(internName, internID, internEmail, school);
+            const intern = new Intern(internName, internID, internEmail, school);
 
             empArray.push(intern);
 
-            if (confirmed) {
+            if (internAnswers.confirmed) {
                 return internData(empArray)
             }
             else {
@@ -246,13 +249,16 @@ const internData = () => {
         })
 };
 
+const writeHTML = (data) => {
+    fs.writeFile("index.html", data, (err) => {
+        err ? console.log(err) : console.log("Success!")
+    })
+};
 
-
-
-// const init = () => {
-//     managerData()
-//         .then((answers) => fs.writeFile("index.html", (generateHTML(answers)).toString(), (err) =>
-//             err ? console.log(err) : console.log("Success!")));
-//         }
-
-//         init();
+managerData()
+.then(engineerData)
+.then(internData)
+.then(empArray => {
+    return generateHTML(empArray);
+})
+.then(writeHTML);
