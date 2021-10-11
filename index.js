@@ -1,18 +1,20 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generateHTML = require("./generateHTML");
-const Manager = require("./Position JS/manager");
-const Engineer = require("./Position JS/engineer");
-const Intern = require("./Position JS/intern")
+const Manager = require("./Class-JS/Manager");
+const Engineer = require("./Class-JS/Engineer");
+const Intern = require("./Class-JS/Intern")
 
+//Empty Array to store Team information in
 const empArray = [];
 
+//Prompt to collect manager information
 const managerData = () => {
     return inquirer.prompt([
         {
             type: "input",
             message: "Enter Manager Name",
-            name: "managerName",
+            name: "name",
             validate: nameInput => {
                 if (nameInput) {
                     return true;
@@ -26,9 +28,9 @@ const managerData = () => {
         {
             type: "input",
             message: "Enter Manager ID",
-            name: "managerID",
+            name: "id",
             validate: idInput => {
-                if ((idInput)) {
+                if (idInput) {
                     return true;
                 }
                 else {
@@ -40,7 +42,7 @@ const managerData = () => {
         {
             type: "input",
             message: "Enter Manager Eamil",
-            name: "managerEmail",
+            name: "email",
             validate: emailInput => {
                 if (emailInput) {
                     return true;
@@ -54,9 +56,9 @@ const managerData = () => {
         {
             type: "input",
             message: "Enter Manager Office Number",
-            name: "managerOffice",
-            validate: officeInput => {
-                if ((officeInput)) {
+            name: "officeNumber",
+            validate: officeNumberInput => {
+                if (officeNumberInput) {
                     return true;
                 }
                 else {
@@ -72,9 +74,10 @@ const managerData = () => {
             default: false
         },
     ])
+    //Storing Manager answers as an object to be pushed into the empty array as a new Manager
         .then(managerAnswers => {
-            const { managerName, managerID, managerEmail, managerOffice } = managerAnswers;
-            const manager = new Manager(managerName, managerID, managerEmail, managerOffice);
+            const { name, id, email, officeNumber } = managerAnswers;
+            const manager = new Manager(name, id, email, officeNumber);
 
             empArray.push(manager);
 
@@ -87,13 +90,13 @@ const managerData = () => {
         })
 };
 
-
+//Prompt to caputre Engineer data
 const engineerData = () => {
     return inquirer.prompt([
         {
             type: "input",
             message: "Enter Engineer's Name",
-            name: "engName",
+            name: "name",
             validate: nameInput => {
                 if (nameInput) {
                     return true;
@@ -107,7 +110,7 @@ const engineerData = () => {
         {
             type: "input",
             message: "Engineer's Employee ID",
-            name: "engID",
+            name: "id",
             validate: idInput => {
                 if ((idInput)) {
                     return true;
@@ -121,7 +124,7 @@ const engineerData = () => {
         {
             type: "input",
             message: "Engineer's Email",
-            name: "engEmail",
+            name: "email",
             validate: emailInput => {
                 if (emailInput) {
                     return true;
@@ -153,9 +156,10 @@ const engineerData = () => {
             default: false
         },
     ])
+    //Storing Engineer answers as an object to be pushed into the empty array as a new engineer
         .then((engineerAnswers) => {
-            const { engName, engID, engEmail, gitHub } = engineerAnswers;
-            const engineer = new Engineer(engName, engID, engEmail, gitHub);
+            const { name, id, email, gitHub } = engineerAnswers;
+            const engineer = new Engineer(name, id, email, gitHub);
 
             empArray.push(engineer);
 
@@ -167,13 +171,13 @@ const engineerData = () => {
             }
         })
 };
-
+ //Prompt to caputre intern answers
 const internData = () => {
     return inquirer.prompt([
         {
             type: "input",
             message: "Enter Intern's Name",
-            name: "internName",
+            name: "name",
             validate: nameInput => {
                 if (nameInput) {
                     return true;
@@ -187,7 +191,7 @@ const internData = () => {
         {
             type: "input",
             message: "Enter Intern's Employee ID",
-            name: "internID",
+            name: "id",
             validate: idInput => {
                 if ((idInput)) {
                     return true;
@@ -201,7 +205,7 @@ const internData = () => {
         {
             type: "input",
             message: "Enter Intern's Email",
-            name: "internEmail",
+            name: "email",
             validate: emailInput => {
                 if (emailInput) {
                     return true;
@@ -233,10 +237,11 @@ const internData = () => {
             default: false
         },
     ])
+        //Storing Intern answers as an object to be pushed into the empty array as a new Intern
         .then((internAnswers) => {
 
-            const { internName, internID, internEmail, school } = internAnswers;
-            const intern = new Intern(internName, internID, internEmail, school);
+            const { name, id, email, school } = internAnswers;
+            const intern = new Intern(name, id, email, school);
 
             empArray.push(intern);
 
@@ -248,7 +253,7 @@ const internData = () => {
             }
         })
 };
-
+// Function to write the actual HTML Document
 const writeHTML = (data) => {
     fs.writeFile("index.html", data, (err) => {
         err ? console.log(err) : console.log("Success!")

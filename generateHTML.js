@@ -1,36 +1,37 @@
 
+//Creating the Manager Card
 const generateManager = (manager) => {
 
     return `
     <div class = "col-4 mt-5">
         <div class="card w-90 border border-color: secondary border-style: solid; border-width: 3px; padding: 5px">
             <div class="card-header bg-success border-3">
-                <h3>Name: ${manager.managerName}</h3>
+                <h3>Name: ${manager.name}</h3>
                 <p>Manager</p>
             </div>
             <div class = "card-body border border-success border-3">
-                <p>ID : ${manager.managerID}</p>
-                <p>Email : ${manager.managerEmail}</p>
-                <p>Office : ${manager.managerOffice}</p>
+                <p>ID : ${manager.id}</p>
+                <p>Email : ${manager.email}</p>
+                <p>Office : ${manager.officeNumber}</p>
             </div>
         </div>
     </div>`
 };
 
 
-
+//Creating the Engineer Card
 const generateEngineer = (engineer) => {
 
     return `
     <div class = "col-4 mt-5">
         <div class="card w-90 border border-color: secondary border-style: solid; border-width: 3px; padding: 5px">
             <div class="card-header bg-success border-3">
-                <h3>Name: ${engineer.engName}</h3>
+                <h3>Name: ${engineer.name}</h3>
                 <p>Engineer</p>
             </div>
             <div class= "card-body border border-success border-3">
-                <p>ID : ${engineer.engID}</p>
-                <p>Email : ${engineer.engEmail}</p>
+                <p>ID : ${engineer.id}</p>
+                <p>Email : ${engineer.email}</p>
                 <p>GitHub : <a href = "https://github.com/${engineer.gitHub}">${engineer.gitHub}</a></p>
             </div>
         </div>
@@ -38,18 +39,18 @@ const generateEngineer = (engineer) => {
     `
 };
 
-
+//Creating the Intern Card
 const generateIntern = (intern) => {
     return `
     <div class = "col-4 mt-5">
         <div class="card w-90 border border-color: secondary border-style: solid; border-width: 3px; padding: 5px">
             <div class="card-header bg-success border-3">
-                <h3>Name : ${intern.internName}</h3>
+                <h3>Name : ${intern.name}</h3>
                 <p>Intern</p>
             </div>
             <div class = "card-body border border-success border-3">
-                <p>ID : ${intern.internID}</p>
-                <p>Email : ${intern.internEmail}</p>
+                <p>ID : ${intern.id}</p>
+                <p>Email : ${intern.email}</p>
                 <p>School : ${intern.school}</p>
             </div>
         </div>
@@ -57,8 +58,11 @@ const generateIntern = (intern) => {
     `
 };
 
+//Running a for loop over the collected answers and assigning them to either the Manager, Engineer, or 
+// Intern Card based on the position that is assigned to their class
 const generateHTML = (data) => {
 
+    //Empty Array to push the created cards into
     sectionArray = [];
 
     for (let i = 0; i < data.length; i++) {
@@ -88,6 +92,7 @@ const generateHTML = (data) => {
 
 };
 
+//Creating the HTML to attach array of cards to
 const generateTeam = (cards) => {
     return `
     <!DOCTYPE html>
@@ -117,5 +122,5 @@ const generateTeam = (cards) => {
         </html>`
 };
 
-
+//Exporting generateHTML that includes the cards to index.js 
 module.exports = generateHTML;
