@@ -1,9 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generateHTML = require("./generateHTML");
-const Manager = require("./manager");
-const Engineer = require("./engineer");
-const Intern = require("./intern")
+const Manager = require("./Position JS/manager");
+const Engineer = require("./Position JS/engineer");
+const Intern = require("./Position JS/intern")
 
 const empArray = [];
 
