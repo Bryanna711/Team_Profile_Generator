@@ -74,7 +74,7 @@ const managerData = () => {
             default: false
         },
     ])
-    //Storing Manager answers as an object to be pushed into the empty array as a new Manager
+        //Storing Manager answers as an object to be pushed into the empty array as a new Manager
         .then(managerAnswers => {
             const { name, id, email, officeNumber } = managerAnswers;
             const manager = new Manager(name, id, email, officeNumber);
@@ -85,7 +85,7 @@ const managerData = () => {
                 return managerData(empArray);
             }
             else {
-               return empArray;
+                return empArray;
             }
         })
 };
@@ -156,7 +156,7 @@ const engineerData = () => {
             default: false
         },
     ])
-    //Storing Engineer answers as an object to be pushed into the empty array as a new engineer
+        //Storing Engineer answers as an object to be pushed into the empty array as a new engineer
         .then((engineerAnswers) => {
             const { name, id, email, gitHub } = engineerAnswers;
             const engineer = new Engineer(name, id, email, gitHub);
@@ -171,7 +171,7 @@ const engineerData = () => {
             }
         })
 };
- //Prompt to caputre intern answers
+//Prompt to caputre intern answers
 const internData = () => {
     return inquirer.prompt([
         {
@@ -261,9 +261,9 @@ const writeHTML = (data) => {
 };
 
 managerData()
-.then(engineerData)
-.then(internData)
-.then(empArray => {
-    return generateHTML(empArray);
-})
-.then(writeHTML);
+    .then(engineerData)
+    .then(internData)
+    .then(empArray => {
+        return generateHTML(empArray);
+    })
+    .then(writeHTML);

@@ -14,7 +14,7 @@ const generateManager = (manager) => {
             </div>
             <div class = "card-body border border-success border-3">
                 <p>ID : ${manager.id}</p>
-                <p>Email : ${manager.email}</p>
+                <p>Email: <a class="mailto" href="mailto:${manager.email}">${manager.email}</a></p>
                 <p>Office : ${manager.officeNumber}</p>
             </div>
         </div>
@@ -36,7 +36,7 @@ const generateEngineer = (engineer) => {
             </div>
             <div class= "card-body border border-success border-3">
                 <p>ID : ${engineer.id}</p>
-                <p>Email : ${engineer.email}</p>
+                <p>Email: <a class="mailto" href="mailto:${engineer.email}">${engineer.email}</a></p>
                 <p>GitHub : <a href = "https://github.com/${engineer.gitHub}">${engineer.gitHub}</a></p>
             </div>
         </div>
@@ -57,7 +57,7 @@ const generateIntern = (intern) => {
             </div>
             <div class = "card-body border border-success border-3">
                 <p>ID : ${intern.id}</p>
-                <p>Email : ${intern.email}</p>
+                <p>Email : <a class="mailto" href="mailto:${intern.email}">${intern.email}</a></p>
                 <p>School : ${intern.school}</p>
             </div>
         </div>
