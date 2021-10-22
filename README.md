@@ -17,3 +17,6 @@ Node.js
 
 bevinge711@gmail.com
 Bryanna711 - GitHub
+
+## Link to Video
+https://studio.youtube.com/video/h8QsM6_q1Ds/edit
