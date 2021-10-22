@@ -1,9 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateHTML = require("./generateHTML");
-const Manager = require("./Class-JS/Manager");
-const Engineer = require("./Class-JS/Engineer");
-const Intern = require("./Class-JS/Intern")
+const generateHTML = require("./src/generateHTML");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern")
 
 //Empty Array to store Team information in
 const empArray = [];
